@@ -67,6 +67,9 @@ public class Main {
                 .collect(Collectors.groupingBy(Viaje::getViajero, Collectors.summingDouble(Viaje::getPrecio)))
                 .forEach((k,v) -> IO.println(k.getNombre() + ": " + v + "€"));
 
+        IO.println("Viajero con más puntos");
+        IO.println(viajeroRepo.findTop1ByPuntosDesc());
+
 
 
 
