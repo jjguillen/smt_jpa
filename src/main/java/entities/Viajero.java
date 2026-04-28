@@ -36,7 +36,9 @@ public class Viajero {
     @Column(name = "saldo_puntos")
     private Integer saldoPuntos;
 
+
     @OneToMany(mappedBy = "viajero")
     @ToString.Exclude
     private List<Viaje> viajes;
+
 }
