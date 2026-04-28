@@ -28,4 +28,20 @@ public class ViajeroRepository extends JpaRepository<Viajero, Long> {
         }
     }
 
+    //Gasto total por viajero
+    public List<String> findGastoTotalViajeros() {
+        EntityManager em = JpaUtil.createEntityManager();
+        try {
+            List<Object[]> lista = em.createQuery("SELECT vj.nombre, SUM(v.precio)" +
+                    "FROM Viaje v JOIN v.viajero vj GROUP BY vj.nombre", Object[].class).getResultList();
+
+            return lista.stream()
+                    .map(obj -> obj[0] + ": " + obj[1] + "€")
+                    .toList();
+
+        } finally {
+            em.close();
+        }
+    }
+
 }
