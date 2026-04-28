@@ -3,9 +3,12 @@ import entities.Viaje;
 import entities.Viajero;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import repositories.ViajeRepository;
 import repositories.ViajeroRepository;
 import utils.JpaUtil;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Main {
@@ -27,6 +30,28 @@ public class Main {
         v1.setSaldoPuntos(200);
         viajeroRepo.update(v1);
          */
+
+        Viajero v1 = viajeroRepo.findById(1L).orElse(null);
+        Viajero v2 = viajeroRepo.findById(2L).orElse(null);
+
+        ViajeRepository viajeRepo = new ViajeRepository();
+
+        viajeRepo.save(new Viaje(null, "Línea 1", "Antas", "Vera",
+                LocalDate.now(), LocalTime.now(), 45, 2.5, false, v1));
+        viajeRepo.save(new Viaje(null, "Línea 1", "Vera", "Antas",
+                LocalDate.now(), LocalTime.now().plusHours(2), 47, 2.5,
+                false, v1));
+
+        viajeRepo.save(new Viaje(null, "Línea 2", "Mojácar", "Garrucha",
+                LocalDate.now(), LocalTime.now(), 10, 1.5, false, v2));
+        viajeRepo.save(new Viaje(null, "Línea 1", "Garrucha", "Mojácar",
+                LocalDate.now(), LocalTime.now().plusHours(1), 13, 1.5,
+                true, v2));
+
+
+
+
+
 
 
 
