@@ -57,13 +57,13 @@ public class Main {
 
         viajeRepo.findWithIncidencia().forEach(System.out::println);
 
+        Viajero v1 = viajeroRepo.findById(1L).orElse(null);
+        IO.println(v1.getViajes());
 
-
-
-
-
-
-
+        //Viajes del viajero 1 con más de 1 euro de gasto
+        v1.getViajes().stream()
+                .filter(v -> v.getPrecio() > 1)
+                .forEach(System.out::println);
 
 
     }

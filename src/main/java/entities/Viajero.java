@@ -36,8 +36,7 @@ public class Viajero {
     @Column(name = "saldo_puntos")
     private Integer saldoPuntos;
 
-
-    @OneToMany(mappedBy = "viajero")
+    @OneToMany(mappedBy = "viajero", fetch = FetchType.EAGER)
     @ToString.Exclude
     private List<Viaje> viajes;
 
