@@ -62,6 +62,13 @@ public class Main {
         IO.println("Gasto total por viajero");
         viajeroRepo.findGastoTotalViajeros().forEach(System.out::println);
 
+        IO.println("Gasto total por viajero v2");
+        viajeRepo.findAll().stream()
+                .collect(Collectors.groupingBy(Viaje::getViajero, Collectors.summingDouble(Viaje::getPrecio)))
+                .forEach((k,v) -> IO.println(k.getNombre() + ": " + v + "€"));
+
+
+
 
     }
 }
